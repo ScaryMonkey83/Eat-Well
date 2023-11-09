@@ -22,7 +22,7 @@ fileprivate struct IngredientDetail: View {
         if let ingredients = meal?.ingredients {
             VStack {
                 Text("Ingredients: ")
-                    .foregroundStyle(colorScheme.primary)
+                    .foregroundStyle(colorScheme.blkOrWhtInverse)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .font(.system(size: fontSize(dynSize) * fullGeo.size.height * titleScale, weight: .semibold, design: .serif))
                     .shadow(color: colorScheme.blkOrWht, radius: 1, x: 1)
@@ -43,7 +43,7 @@ fileprivate struct IngredientDetail: View {
             .frame(width: fullGeo.size.width * 0.9)
         } else {
             Text("There was a problem.")
-                .foregroundStyle(colorScheme.primary)
+                .foregroundStyle(colorScheme.blkOrWhtInverse)
         }
     }
 }
@@ -59,7 +59,7 @@ fileprivate struct InstructionsDetail: View {
         if let instructions = meal?.strInstructions {
             VStack {
                 Text("Directions: ")
-                    .foregroundStyle(colorScheme.primary)
+                    .foregroundStyle(colorScheme.blkOrWhtInverse)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .font(.system(size: fontSize(dynSize) * fullGeo.size.height * titleScale, weight: .semibold, design: .serif))
                     .shadow(color: colorScheme.blkOrWht, radius: 1, x: 1)
@@ -76,7 +76,7 @@ fileprivate struct InstructionsDetail: View {
             .frame(width: fullGeo.size.width * 0.9)
         } else {
             Text("There was a problem.")
-                .foregroundStyle(colorScheme.primary)
+                .foregroundStyle(colorScheme.blkOrWht)
         }
     }
 }
@@ -94,14 +94,14 @@ struct MealDetail: View {
     var body: some View {
         GeometryReader { geo in
             ZStack {
-                if let image = navigationViewModel.mealImages[partialMeal.idMeal] as? UIImage {
+                if let image = navigationViewModel.mealImages[partialMeal.idMeal] {
                     Image(uiImage: image)
                         .resizable()
                         .ignoresSafeArea(.all)
                         .aspectRatio(contentMode: .fill)
                         .frame(width: geo.size.width, height: geo.size.height, alignment: .center)
                 }
-                if let meal = navigationViewModel.meals[partialMeal] as? Meal {
+                if let meal = navigationViewModel.meals[partialMeal] {
                     ScrollView(showsIndicators: false) {
                         VStack {
                             Rectangle()
@@ -135,7 +135,7 @@ struct MealDetail: View {
                 )
             }.onAppear() {
                 navigationViewModel.loadMeal(for: partialMeal)
-                if let meal = navigationViewModel.meals[partialMeal] as? Meal {
+                if let meal = navigationViewModel.meals[partialMeal] {
                     self.title = meal.strMeal
                 } else {
                     navigationViewModel.loadMeal(for: partialMeal) { meal in

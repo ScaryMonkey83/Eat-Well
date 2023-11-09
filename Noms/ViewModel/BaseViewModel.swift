@@ -15,6 +15,9 @@ import SwiftUI
 class BaseViewModel : ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     
+    /// Never really did anything with this but a top-level NavigationStack could push a screen with an alert.
+    /// What would be better is achieving a level of error-handling that allows continuous navigation of the
+    ///     cached components despite HTTP errors whilst continuing to regain connection.
     @Published var connected: Bool = true
     
     var client: AsyncClient {

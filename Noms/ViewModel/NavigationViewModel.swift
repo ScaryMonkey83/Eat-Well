@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 
 // TODO: only load when resources are not available or override is supplied to load functions
-// TODO: Rather than
 class NavigationViewModel : BaseViewModel {
     @Published var categories: [MealCategory]?
     

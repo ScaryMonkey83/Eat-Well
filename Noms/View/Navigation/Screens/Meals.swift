@@ -34,7 +34,7 @@ struct MealRow: View {
         .padding([.leading, .trailing])
         .background(alignment: .center) {
             GeometryReader { geo in
-                if let image = navigationViewModel.mealImages[partialMeal.idMeal] as? UIImage {
+                if let image = navigationViewModel.mealImages[partialMeal.idMeal] {
                     Image(uiImage: image)
                         .resizable() // Make the image resizable
                         .aspectRatio(contentMode: .fill) // Fill the available space
@@ -60,7 +60,7 @@ struct MealsList: View {
         GeometryReader { geo in
             NavigationStack {
                 ZStack {
-                    if let partialMeals = navigationViewModel.partialMeals[category] as? [PartialMeal] {
+                    if let partialMeals = navigationViewModel.partialMeals[category] {
                         // had to use scroll view cuz List wouldn't let me embed a rectangle at the top.
                         ScrollView {
                             LazyVStack(spacing: 0) {

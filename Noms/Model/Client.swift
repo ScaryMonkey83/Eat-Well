@@ -36,8 +36,7 @@ class AsyncClient : FreeMealAPIClient {
             return newInstance
         }
     }
-    
-    // TODO: This is not the right way to do images at all. Images should definintely be their own thing.
+
     func fetchCategories(dataCallback: @escaping (Result<CategoryResponse, Error>) -> Void) {
         let categoriesURL = URL(string: "https://www.themealdb.com/api/json/v1/1/categories.php")
         // using ! is alright here because if it crashes that means the hard-coded url is bad and that can be fixed in dev.
