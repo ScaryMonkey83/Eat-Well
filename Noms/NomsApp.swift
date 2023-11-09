@@ -9,9 +9,14 @@ import SwiftUI
 
 @main
 struct NomsApp: App {
+    var navigationViewModel = NavigationViewModel()
+    var searchViewModel = SearchViewModel()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CategoryList()
+                .environmentObject(navigationViewModel)
+                .environmentObject(searchViewModel)
         }
     }
 }
