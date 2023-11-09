@@ -173,7 +173,6 @@
 		1D0F25BF2AF33DA000630AA5 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				1D0F25F22AF3451D00630AA5 /* SearchView.swift */,
 				1D0F261A2AF5D9FB00630AA5 /* Navigation */,
 			);
 			path = View;
@@ -241,6 +240,7 @@
 		1D4DECD52AF6D6B300E59146 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				1D0F25F22AF3451D00630AA5 /* SearchView.swift */,
 				1D0F25E02AF3425000630AA5 /* Categories.swift */,
 				1D0F25E32AF3426100630AA5 /* Meals.swift */,
 				1D0F25EF2AF343E300630AA5 /* MealDetail.swift */,

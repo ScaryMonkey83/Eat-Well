@@ -6,10 +6,17 @@
 //
 
 import Foundation
+import SwiftUI
 
 class SearchViewModel: BaseViewModel {
     @Published var meals: [Meal]?
-    @Published var mealImages = NSMutableDictionary()
+    @Published var mealImages: [String:UIImage] = [:]
+    
+    override init() {
+        super.init()
+        self.configureCollectionBindings($mealImages)
+        self.configureCollectionBindings($meals)
+    }
     
     func search(_ query: String, callback: ((MealsResponse?) -> Void)? = nil) {
         self.client.fetchMealsByName(query) { [weak self] result in
@@ -24,7 +31,7 @@ class SearchViewModel: BaseViewModel {
                 callback?(mealsResponse)
             }
             for meal in mealsResponse.meals {
-                if self?.mealImages.object(forKey: meal.idMeal) == nil {
+                if !(self?.mealImages.keys.contains(where: { key in key == meal.idMeal }) ?? true) {
                     self?.client.fetchImage(from: meal.strMealThumb) { [weak self] result in
                         guard let imageResponse = self?.handleResponse(result: result) else { return }
                         DispatchQueue.main.async {

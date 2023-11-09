@@ -39,7 +39,11 @@ struct Ingredient: Decodable, Identifiable {
     let measure: String
 }
 
-struct Meal: Decodable, Identifiable {
+struct Meal: Decodable, Identifiable, Equatable {
+    static func == (lhs: Meal, rhs: Meal) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
     var id: String {
         return idMeal
     }

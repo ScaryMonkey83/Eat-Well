@@ -6,15 +6,26 @@
 //
 
 import Foundation
+import SwiftUI
 
 // TODO: only load when resources are not available or override is supplied to load functions
+// TODO: Rather than
 class NavigationViewModel : BaseViewModel {
     @Published var categories: [MealCategory]?
     
-    @Published var partialMeals = NSMutableDictionary()  // MealCategory : [PartialMeal]
-    @Published var meals = NSMutableDictionary()  // PartialMeal : Meal
-    @Published var categoryImages = NSMutableDictionary()  // Category : UIImage
-    @Published var mealImages = NSMutableDictionary()  // (Meal|PartialMeal).idMeal : UIImage
+    @Published var partialMeals: [MealCategory:[PartialMeal]] = [:]
+    @Published var meals: [PartialMeal:Meal] = [:] // PartialMeal : Meal
+    @Published var categoryImages: [MealCategory:UIImage] = [:]  // Category : UIImage
+    @Published var mealImages: [String:UIImage] = [:]  // (Meal|PartialMeal).idMeal : UIImage
+    
+    override init() {
+        super.init()
+        self.configureCollectionBindings($categories, debounceRate: 800)
+        self.configureCollectionBindings($partialMeals, debounceRate: 800)
+        self.configureCollectionBindings($meals, debounceRate: 800)
+        self.configureCollectionBindings($categoryImages, debounceRate: 800)
+        self.configureCollectionBindings($mealImages, debounceRate: 800)
+    }
     
     func loadCategories(callback: ((CategoryResponse) -> Void)? = nil) {
         // get the categories to start.
