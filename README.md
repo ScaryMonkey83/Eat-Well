@@ -1,4 +1,5 @@
 # Project Structure
+iOS 17+ because my phone is on 17.
 
 ## Noms
 
